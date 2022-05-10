@@ -1,16 +1,99 @@
 <!DOCTYPE html>
-<html lang="es">
+<!-- Añadir la clase 'dark' al HTML para activar el Dark Mode -->
+<html lang="es" class="h-full">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Prueba Javascript - Manu García</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Prueba Fourvenues tailwind - Manu García</title>
+  
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="icon" type="image/png" href="images/favicon.png">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Uso este JS para habilitar el Dark Mode con una clase -->
+  <script src="tailwind.config.js"></script>
+
+  <!-- Utilizo los @apply para no tener que repetir clases -->
+
+  <style type="text/tailwindcss">
+      @layer utilities {
+          .maxcontainer {@apply max-w-7xl}
+          * {@apply text-neutral-700 dark:text-slate-300}
+          nav ul li , h1 , h3 , span.numbers , p#user-name {@apply dark:text-white}
+          header , main {@apply dark:bg-slate-900}
+          h1 , h3.nuxewindgraph {@apply text-2xl font-bold}
+          h2 {    @apply text-sm mb-5 font-normal uppercase;  }
+          .data {@apply bg-white dark:bg-slate-700 p-4 border rounded-lg dark:border-slate-600}
+          p span.numbers {@apply text-6xl font-normal}
+          p.percent {@apply  text-sm mt-4}
+          .mobile-padding {@apply px-4 md:px-0}
+          nav ul li {@apply text-white hover:text-indigo-100 dark:hover:text-slate-300 py-2 cursor-pointer}
+          nav ul li:before {@apply font-['Material_Icons'] relative mr-1 top-0.5}
+          
+        }
+      
+    </style>
 </head>
-<body>
-    <div></div>
-    <div id="principal"></div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.6.1/jquery.min.js"></script>
-    <script src="script/main.js"></script>
+<body class="text-base flex flex-col h-full">
+
+<!-- Composiciones hechas con FLEX y GRID con diseño responsive -->  
+
+  <header class="flex flex-col">
+    <div class="maxcontainer mobile-padding container mx-auto flex flex-row place-content-between">
+      <!-- El logo es un background-image que cambia en el Dark Mode-->
+        <div class="self-center w-44 h-10 bg-contain bg-center bg-no-repeat bg-[url('/images/nuxewind.png')] dark:bg-[url('/images/nuxewind-dark.png')]"></div>
+        
+        <div id="identification" class="grid grid-rows-2 self-right grid-col-[minmax(auto,_1fr)]">
+          <p id="user-name" class="text-xl font-bold text-right">Hector Fields</p>
+          <p id="rol" class="text-right">Administrator</p>
+          <img id="avatar" class="rounded-full  h-auto max-h-10 col-start-2 col-end-3 row-start-1 row-end-3 self-center ml-2" src="images/83.jpg">
+        </div>
+   </div>
+    <nav class="mobile-padding bg-indigo-500 dark:bg-slate-700 md:h-14 md:place-items-center md:grid">
+        <ul class="container maxcontainer mx-auto flex flex-col md:flex-row md:gap-12 justify-center md:justify-start text-center md:text-left">
+  <!-- He aplicado hover a los botones de la lista con @apply en el style del head -->
+            <li class="before:content-['_\e88a']">Dashboard</li>
+            <li class="before:content-['_\e9b0']">Components</li>
+            <li class="before:content-['_\e42b']">Forms</li>
+            <li class="before:content-['_\e897']">Authentification</li>
+        </ul>
+    </nav>
+</header>
+<main class="bg-indigo-50 mobile-padding grow-[2]">
+    <section class="py-9 mx-auto container maxcontainer">
+        <div><h1>Dashboard</h1><p>Welcome back, Hector.</p></div>
+        <div id="graficas" class="mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 grid-rows-[minmax(auto,_1fr)] gap-4">
+            <div id="todayreveraje" class="data" >
+                <h2>Today reveraje</h2>
+                <p><span class="numbers">$4,096</span></p>
+                <p class="percent text-red-500 dark:text-red-300 before:content-['_⭨']" >-12%</p>
+            </div>
+            <div id="todaycustomers" class="data" >
+                <h2>Today customers</h2>
+                <p ><span class="numbers">185</span> Customer</p>
+                <p class="percent text-green-500 dark:text-green-300 before:content-['_↗'] ">+50%</p>
+            </div>
+            <div id="nuxewind"  class="data md:col-span-2 md:row-start-2 md:row-end-2 md:col-start-1 md:col-end-3  flex flex-col md:flex-row md:py-9" >
+              <div class="flex-[1_1_50%]  self-center"><img src="images/grafica-1.png" alt=""></div>
+              <div class="flex-[1_1_50%] self-center p-5 "><h3 class="nuxewindgraph">Welcome to nuxewind</h3>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lobortis, magna a interdum semper, nunc lacus rhoncus.</p></div>
+          </div>
+            <div id="lastdayssale" class="data md:col-span-2 md:row-span-2" >
+              <h2>Last 7 days sales</h2>
+              <img src="images/grafica-2.png" alt="" class="mx-auto">
+              <div class="mx-auto"><p class="text-center -mt-5"><span class="mx-1 before:content-['_\2022'] before:text-5xl before:relative before:top-2.5 before:text-violet-500">medida 1</span><span class="mx-1 before:content-['_\2022'] before:text-5xl before:relative before:top-2.5 before:text-blue-500">medida 2</span></p></div>
+          </div>
+          
+            
+        </div>
+    </section>
+
+</main>
+
+
+
 </body>
 </html>
